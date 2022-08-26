@@ -13,7 +13,8 @@ class SolutionController extends Controller
     public function solutionTwo() {
         $input = array('0'=>'z1', '1'=>'Z10', '2'=>'z12', '3'=>'Z2', '4'=>'z3');
         natcasesort($input);
-        dd($input);
+
+        return view('solution-two', compact('input'));
     }
 
     public function solutionThree() {
