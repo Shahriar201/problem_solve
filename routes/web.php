@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/solution/1', [App\Http\Controllers\SolutionController::class, 'solutionOne'])->name('solution.one');
+Route::get('/solution/2', [App\Http\Controllers\SolutionController::class, 'solutionTwo'])->name('solution.two');
+Route::get('/solution/3', [App\Http\Controllers\SolutionController::class, 'solutionThree'])->name('solution.three');
