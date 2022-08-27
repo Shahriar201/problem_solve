@@ -29,17 +29,18 @@ class SolutionController extends Controller
                 array_push($array,[$speed => $speedValue]);
             }
         }
+        // dd($array);
 
-        // {{-- $count = 0; --}}
-        // foreach ($array as $key => $value) {
-        //     if($value['speed'] > 60) {
-        //         dd($value['speed']);
-        //         $count++;
-        //     }
-        //     dd($count);
-        // }
+        $sum = 0;
+        foreach ($array as $key => $value) {
+            if ($value['speed'] > 60) {
+                    $sum = $key++;
+                //  $value['speed'];
+            }
+        }
+        // dd($sum);
 
-        return view('solution-one', compact('array'));
+        return view('solution-one', compact('array', 'sum'));
     }
 
     public function solutionTwo() {
