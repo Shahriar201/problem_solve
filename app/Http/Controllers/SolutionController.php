@@ -13,8 +13,28 @@ class SolutionController extends Controller
         $client = new Client();
         $response = $client->get('http://103.219.147.17/api/json.php', ['verify' => true]);
         $data =  json_decode(\json_encode(json_decode(($response->getBody())->getContents(), true)));
-        return (object)$data;
-        // dd($data);
+        $getApi = (object)$data;
+        $result = $getApi->data;
+        dd($getApi);
+
+        $myArray = explode(',', $result);
+        // dd($myArray);
+
+        // $myArray->map(function($item, $key) {
+        //     return $item;
+        // });
+        // dd($myArray);
+        $length = count($myArray);
+
+        for ($i = 1; $i < count($myArray); $i = i+2) {
+            // dd($myArray[$i]);
+            $s = explode('=', $myArray[$i]);
+            if ($s[1] < 60) {
+                dd($s[1]);
+            }
+            // dd($s);
+            // dd('error');
+        }
     }
 
     public function solutionTwo() {
