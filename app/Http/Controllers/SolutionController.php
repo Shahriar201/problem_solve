@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use DB;
-use IPset\Ipset;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class SolutionController extends Controller
 {
     public function solutionOne() {
-        dd('solution 1');
+        $client = new Client();
+        $response = $client->get('http://103.219.147.17/api/json.php', ['verify' => true]);
+        $data =  json_decode(\json_encode(json_decode(($response->getBody())->getContents(), true)));
+        return (object)$data;
+        // dd($data);
     }
 
     public function solutionTwo() {
