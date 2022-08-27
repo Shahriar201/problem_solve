@@ -45,36 +45,12 @@ class SolutionController extends Controller
     }
 
     public function solutionThree() {
-    //     $ipaddress = '192.168.0.1';
-    //    if (isset($_SERVER['HTTP_CLIENT_IP']))
-    //        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    //    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-    //        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    //    else if(isset($_SERVER['HTTP_X_FORWARDED']))
-    //        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    //    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-    //        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    //    else if(isset($_SERVER['HTTP_FORWARDED']))
-    //        $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    //    else if(isset($_SERVER['REMOTE_ADDR']))
-    //        $ipaddress = $_SERVER['REMOTE_ADDR'];
-    //    else
-    //        $ipaddress = 'UNKNOWN';
-    //    return $ipaddress;
+        $ip = "192.168.0.1";
 
-        // Validator::extend('ip_range',function ($attribute, $value, $parameters){
-        //     $ipset = new IPSet(array('192.168.1.0/24'));
-        //     return ($ipset->match($value));
-
-        // });
-        $req = '192.168.0.1';
-        $req->validate([
-
-            'ip'
-
-          ]);
-
-        dd('done');
-
+        if (filter_var($ip, FILTER_VALIDATE_IP)) {
+            dd('true');
+        } else {
+            dd('false');
+        }
     }
 }
