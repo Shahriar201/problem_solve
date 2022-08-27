@@ -14,12 +14,10 @@ class SolutionController extends Controller
         $response = $client->get('http://103.219.147.17/api/json.php', ['verify' => true]);
         $data =  json_decode(\json_encode(json_decode(($response->getBody())->getContents(), true)));
         $getApiData = (object)$data;
-        // $result = $getApiData->data;
-        // dd($getApiData);
 
         $array = [];
         $data = explode(',', $getApiData->data);
-        // dd($data);
+
         for ($i = 0; $i  < count($data); $i++) {
             $string = str_replace(' ', '', $data[$i]);
 
@@ -29,16 +27,12 @@ class SolutionController extends Controller
                 array_push($array,[$speed => $speedValue]);
             }
         }
-        // dd($array);
 
-        $sum = 0;
         foreach ($array as $key => $value) {
             if ($value['speed'] > 60) {
                     $sum = $key++;
-                //  $value['speed'];
             }
         }
-        // dd($sum);
 
         return view('solution-one', compact('array', 'sum'));
     }
