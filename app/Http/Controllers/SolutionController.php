@@ -13,28 +13,33 @@ class SolutionController extends Controller
         $client = new Client();
         $response = $client->get('http://103.219.147.17/api/json.php', ['verify' => true]);
         $data =  json_decode(\json_encode(json_decode(($response->getBody())->getContents(), true)));
-        $getApi = (object)$data;
-        $result = $getApi->data;
-        dd($getApi);
+        $getApiData = (object)$data;
+        // $result = $getApiData->data;
+        // dd($getApiData);
 
-        $myArray = explode(',', $result);
-        // dd($myArray);
+        $array = [];
+        $data = explode(',', $getApiData->data);
+        // dd($data);
+        for ($i = 0; $i  < count($data); $i++) {
+            $string = str_replace(' ', '', $data[$i]);
 
-        // $myArray->map(function($item, $key) {
-        //     return $item;
-        // });
-        // dd($myArray);
-        $length = count($myArray);
-
-        for ($i = 1; $i < count($myArray); $i = i+2) {
-            // dd($myArray[$i]);
-            $s = explode('=', $myArray[$i]);
-            if ($s[1] < 60) {
-                dd($s[1]);
+            if(substr($string,0,5) == "speed") {
+                $speed = substr($string,0,5);
+                $speedValue = substr($string,6,10);
+                array_push($array,[$speed => $speedValue]);
             }
-            // dd($s);
-            // dd('error');
         }
+
+        // {{-- $count = 0; --}}
+        // foreach ($array as $key => $value) {
+        //     if($value['speed'] > 60) {
+        //         dd($value['speed']);
+        //         $count++;
+        //     }
+        //     dd($count);
+        // }
+
+        return view('solution-one', compact('array'));
     }
 
     public function solutionTwo() {
@@ -62,10 +67,19 @@ class SolutionController extends Controller
     //        $ipaddress = 'UNKNOWN';
     //    return $ipaddress;
 
-        Validator::extend('ip_range',function ($attribute, $value, $parameters){
-            $ipset = new IPSet(array('192.168.1.0/24'));
-            return ($ipset->match($value));
+        // Validator::extend('ip_range',function ($attribute, $value, $parameters){
+        //     $ipset = new IPSet(array('192.168.1.0/24'));
+        //     return ($ipset->match($value));
 
-        });
+        // });
+        $req = '192.168.0.1';
+        $req->validate([
+
+            'ip'
+
+          ]);
+
+        dd('done');
+
     }
 }
