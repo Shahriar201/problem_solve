@@ -28,13 +28,14 @@ class SolutionController extends Controller
             }
         }
 
+        $number = 1;
         foreach ($array as $key => $value) {
             if ($value['speed'] > 60) {
-                    $sum = $key++;
+                    $total = $number++;
             }
         }
 
-        return view('solution-one', compact('array', 'sum'));
+        return view('solution-one', compact('array', 'total'));
     }
 
     public function solutionTwo() {
