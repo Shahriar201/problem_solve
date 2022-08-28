@@ -48,10 +48,6 @@ class SolutionController extends Controller
     public function solutionThree() {
         $ip = "192.168.0.1";
 
-        if (filter_var($ip, FILTER_VALIDATE_IP)) {
-            dd('true');
-        } else {
-            dd('false');
-        }
+        return view('solution-three', compact('ip'));
     }
 }
